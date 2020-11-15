@@ -21,12 +21,34 @@ const gambarKomputer = document.querySelector(".img-komputer");
 
 const ambilSemuaGambarPlayer = document.querySelectorAll('li img');
 
+const acakGambar = () => {
+    const gambar = ['gajah', 'semut', 'orang'];
+    const waktuMulai = new Date().getTime();
+    let i = 0;
+    setInterval(function() {
+        if (new Date().getTime() - waktuMulai > 1500) {
+            clearInterval;
+            return
+        }
+        gambarKomputer.setAttribute('src', 'img/' + gambar[i++] +'.png')
+        if (i == gambar.length) i = 0;
+    }, 100)
+}
+
 ambilSemuaGambarPlayer.forEach(function(klikGambarApa) {
     klikGambarApa.addEventListener('click', function() {
         const pilihanPlayer = klikGambarApa.className;
         const pilihanKomp = cariPilihanKomp();
         const hasil = dapatHasilSuit(pilihanPlayer, pilihanKomp);
-        info.innerText = hasil;
-        gambarKomputer.setAttribute('src', `img/${pilihanKomp}.png`); 
-        })
-})
+
+        acakGambar();
+
+        setTimeout(function() {
+            info.innerText = hasil;
+            gambarKomputer.setAttribute('src', `img/${pilihanKomp}.png`); 
+        }, 1500);
+        info.innerText = '';
+        });
+});
+
+
