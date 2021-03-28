@@ -1,5 +1,5 @@
 # Game Suit Jawa Javascript
 
- Game Sederhana hanya dengan HTML, CSS dan Vanilla Javascript 
+Simple game with vanilla Javascript
 
 
