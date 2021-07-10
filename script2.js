@@ -5,12 +5,12 @@ const information = document.querySelector(".information");
 const computerPicture = document.querySelector(".img-komputer");
 const playerPictures = document.querySelectorAll(".area-player img");
 
-function findComputerChoice() {
+const findComputerChoice = () => {
     const computerChoice = Math.random();
     if (computerChoice < 0.34) return `batu`;
     if (computerChoice >= 0.34 && computerChoice <= 0.67) return `gunting`;
     return `kertas`;
-}
+};
 
 const getGameResult = (playerChoice, computerChoice) => {
     if (playerChoice == computerChoice) return "DRAW !";
@@ -27,10 +27,9 @@ const shufflePictures = () => {
     const startTime = new Date().getTime();
     const refreshImg = document.getElementsByClassName("refresh-img");
     let i = 0;
-    setInterval(function () {
+    setInterval(() => {
         if (new Date().getTime() - startTime > 1500) {
             clearInterval;
-            refreshImg.classList.add("rotate");
             return;
         }
         computerPicture.setAttribute("src", "assets/" + pictures[i++] + ".png");
@@ -38,18 +37,25 @@ const shufflePictures = () => {
     }, 100);
 };
 
-playerPictures.forEach(function (clickedPicture) {
-    clickedPicture.addEventListener("click", function () {
-        const playerChoice = clickedPicture.className;
-        const computerChoice = findComputerChoice();
-        const result = getGameResult(playerChoice, computerChoice);
+const runTheGame = () => {
+    playerPictures.forEach((clickedPicture) => {
+        clickedPicture.addEventListener("click", function () {
+            const playerChoice = clickedPicture.className;
+            const computerChoice = findComputerChoice();
+            const result = getGameResult(playerChoice, computerChoice);
 
-        shufflePictures();
+            shufflePictures();
 
-        setTimeout(function () {
-            information.innerText = result;
-            computerPicture.setAttribute("src", `assets/${computerChoice}.png`);
-        }, 1500);
-        information.innerText = "";
+            setTimeout(() => {
+                information.innerText = result;
+                computerPicture.setAttribute(
+                    "src",
+                    `assets/${computerChoice}.png`
+                );
+            }, 1500);
+            information.innerText = "";
+        });
     });
-});
+};
+
+runTheGame();

@@ -190,10 +190,11 @@ h1 {
 }
 
 .info h3 {
-    font-size: 144px;
+    font-size: 90px;
     color: #bd0000;
     letter-spacing: 0.1em;
-    grid-row-start: 3;
+    font-weight: bold;
+    grid-row-start: 1;
     text-align: center;
 }
 
@@ -213,13 +214,16 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-row-start: 1;
+    grid-row-start: 3;
     margin: 0 auto;
-}
-
-.info .result {
+    transform: rotate(-20deg);
+    cursor: pointer;
     font-size: 38px;
     text-align: center;
+}
+
+.info .result:hover {
+    background: #035b0c;
 }
 
 .area-komputer {
