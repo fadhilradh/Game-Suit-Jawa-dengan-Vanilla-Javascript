@@ -1,3 +1,10 @@
+const rock = document.querySelector(".batu");
+const scissor = document.querySelector(".gunting");
+const paper = document.querySelector(".kertas");
+const information = document.querySelector(".information");
+const computerPicture = document.querySelector(".img-komputer");
+const playerPictures = document.querySelectorAll(".area-player img");
+
 function findComputerChoice() {
     const computerChoice = Math.random();
     if (computerChoice < 0.34) return `batu`;
@@ -6,33 +13,27 @@ function findComputerChoice() {
 }
 
 const getGameResult = (playerChoice, computerChoice) => {
-    if (playerChoice == computerChoice) return "DRAW";
+    if (playerChoice == computerChoice) return "DRAW !";
     if (playerChoice == "batu")
-        return computerChoice == "gunting" ? "PLAYER 1 WIN" : "COM WIN";
+        return computerChoice == "gunting" ? "PLAYER 1 WIN !" : "COM WIN !";
     if (playerChoice == "gunting")
-        return computerChoice == "batu" ? "COM WIN" : "PLAYER 1 WIN";
+        return computerChoice == "batu" ? "COM WIN !" : "PLAYER 1 WIN !";
     if (playerChoice == "kertas")
-        return computerChoice == "gunting" ? "COM WIN" : "PLAYER 1 WIN";
+        return computerChoice == "gunting" ? "COM WIN !" : "PLAYER 1 WIN !";
 };
-
-const chooseRock = document.querySelector(".batu");
-const chooseScissor = document.querySelector(".gunting");
-const choosePaper = document.querySelector(".kertas");
-const info = document.querySelector(".info");
-const computerImage = document.querySelector(".img-komputer");
-
-const playerPictures = document.querySelectorAll("li img");
 
 const shufflePictures = () => {
     const pictures = ["batu", "gunting", "kertas"];
     const startTime = new Date().getTime();
+    const refreshImg = document.getElementsByClassName("refresh-img");
     let i = 0;
     setInterval(function () {
         if (new Date().getTime() - startTime > 1500) {
             clearInterval;
+            refreshImg.classList.add("rotate");
             return;
         }
-        computerImage.setAttribute("src", "assets/" + pictures[i++] + ".png");
+        computerPicture.setAttribute("src", "assets/" + pictures[i++] + ".png");
         if (i == pictures.length) i = 0;
     }, 100);
 };
@@ -46,9 +47,9 @@ playerPictures.forEach(function (clickedPicture) {
         shufflePictures();
 
         setTimeout(function () {
-            info.innerText = result;
-            computerImage.setAttribute("src", `assets/${computerChoice}.png`);
+            information.innerText = result;
+            computerPicture.setAttribute("src", `assets/${computerChoice}.png`);
         }, 1500);
-        info.innerText = "";
+        information.innerText = "";
     });
 });

@@ -205,7 +205,7 @@ h1 {
 
 .info .result {
     width: 270px;
-    height: 167px;
+    height: 137px;
     background: #4c9654;
     letter-spacing: 0.1em;
     color: white;
@@ -213,12 +213,11 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: rotate(-20deg);
-    grid-row-start: 3;
-    display: none;
+    grid-row-start: 1;
+    margin: 0 auto;
 }
 
-.info .result p {
+.info .result {
     font-size: 38px;
     text-align: center;
 }
@@ -275,4 +274,17 @@ img {
 .gunting:active {
     top: 2px;
     background-color: #c4c4c4;
+}
+
+.rotate {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transition: all 0.1s linear;
+}
+
+.refresh-img {
+    transition-duration: 2s;
 }
