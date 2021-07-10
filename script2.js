@@ -1,62 +1,54 @@
-function cariPilihanKomp() {
-    const pilihanKomp = Math.random();
-    if (pilihanKomp < 0.34) return `batu`;
-    if (pilihanKomp >= 0.34 && pilihanKomp <= 0.67) return `gunting`;
+function findComputerChoice() {
+    const computerChoice = Math.random();
+    if (computerChoice < 0.34) return `batu`;
+    if (computerChoice >= 0.34 && computerChoice <= 0.67) return `gunting`;
     return `kertas`;
 }
 
-const dapatHasilSuit = (pilihanPlayer, pilihanKomp) => {
-    if (pilihanPlayer == pilihanKomp) return "HASILNYA SERI!";
-    if (pilihanPlayer == "batu")
-        return pilihanKomp == "gunting" ? "ANDA MENANG !!" : "ANDA KALAH !!";
-    if (pilihanPlayer == "gunting")
-        return pilihanKomp == "batu" ? "ANDA KALAH !!" : "ANDA MENANG !!";
-    if (pilihanPlayer == "kertas")
-        return pilihanKomp == "gunting" ? "ANDA KALAH !!" : "ANDA MENANG !!";
+const getGameResult = (playerChoice, computerChoice) => {
+    if (playerChoice == computerChoice) return "DRAW";
+    if (playerChoice == "batu")
+        return computerChoice == "gunting" ? "PLAYER 1 WIN" : "COM WIN";
+    if (playerChoice == "gunting")
+        return computerChoice == "batu" ? "COM WIN" : "PLAYER 1 WIN";
+    if (playerChoice == "kertas")
+        return computerChoice == "gunting" ? "COM WIN" : "PLAYER 1 WIN";
 };
 
-const klikBatu = document.querySelector(".batu");
-const klikGunting = document.querySelector(".gunting");
-const klikKertas = document.querySelector(".kertas");
+const chooseRock = document.querySelector(".batu");
+const chooseScissor = document.querySelector(".gunting");
+const choosePaper = document.querySelector(".kertas");
 const info = document.querySelector(".info");
-const gambarKomputer = document.querySelector(".img-komputer");
+const computerImage = document.querySelector(".img-komputer");
 
-const ambilSemuaGambarPlayer = document.querySelectorAll("li img");
+const playerPictures = document.querySelectorAll("li img");
 
-const acakGambar = () => {
-    const gambar = ["batu", "gunting", "kertas"];
-    const waktuMulai = new Date().getTime();
+const shufflePictures = () => {
+    const pictures = ["batu", "gunting", "kertas"];
+    const startTime = new Date().getTime();
     let i = 0;
     setInterval(function () {
-        if (new Date().getTime() - waktuMulai > 1500) {
+        if (new Date().getTime() - startTime > 1500) {
             clearInterval;
             return;
         }
-        gambarKomputer.setAttribute("src", "assets/" + gambar[i++] + ".png");
-        if (i == gambar.length) i = 0;
+        computerImage.setAttribute("src", "assets/" + pictures[i++] + ".png");
+        if (i == pictures.length) i = 0;
     }, 100);
 };
 
-ambilSemuaGambarPlayer.forEach(function (klikGambarApa) {
-    klikGambarApa.addEventListener("click", function () {
-        const pilihanPlayer = klikGambarApa.className;
-        const pilihanKomp = cariPilihanKomp();
-        const hasil = dapatHasilSuit(pilihanPlayer, pilihanKomp);
+playerPictures.forEach(function (clickedPicture) {
+    clickedPicture.addEventListener("click", function () {
+        const playerChoice = clickedPicture.className;
+        const computerChoice = findComputerChoice();
+        const result = getGameResult(playerChoice, computerChoice);
 
-        acakGambar();
+        shufflePictures();
 
         setTimeout(function () {
-            info.innerText = hasil;
-            gambarKomputer.setAttribute("src", `assets/${pilihanKomp}.png`);
+            info.innerText = result;
+            computerImage.setAttribute("src", `assets/${computerChoice}.png`);
         }, 1500);
         info.innerText = "";
     });
 });
-
-//function expression
-
-const luasPersegi = function luasPersegi(a, b) {
-    return a * b;
-};
-
-console.log("Luas persegi adalah " + luasPersegi(5, 5));
