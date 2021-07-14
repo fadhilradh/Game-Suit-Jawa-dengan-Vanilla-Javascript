@@ -257,6 +257,11 @@ img {
     padding: 15px;
 }
 
+.img-komputer {
+    width: 250px;
+    height: 250px;
+}
+
 .batu,
 .gunting,
 .kertas {
