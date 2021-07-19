@@ -150,7 +150,6 @@ h1 {
     margin: 70px auto 0 auto;
     display: flex;
     justify-content: space-between;
-    gap: 25px;
 }
 
 .area-player {
@@ -327,10 +326,11 @@ img {
 
     .info {
         width: 100%;
+        display: flex;
     }
 
     .info h3 {
-        font-size: 40px
+        display: none
     }
 
     .info .result {
@@ -345,7 +345,7 @@ img {
 
     .area-komputer h4 {
         font-size: 20px;
-        margin-top: 20px;
+        margin-bottom: 20px;
         font-weight:bold;
     }
 
